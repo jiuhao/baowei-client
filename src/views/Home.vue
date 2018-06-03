@@ -91,10 +91,17 @@
             </li>
           </ul>
         </div>
-      <img src="../assets/home.jpg">
+      <!-- <img src="../assets/home.jpg"> -->
+      <div class="block">
+        <el-carousel height="400px">
+          <el-carousel-item v-for="item in 4" :key="item">
+            <img src="../assets/home.jpg">
+          </el-carousel-item>
+        </el-carousel>
+      </div>
     </div>
     <div class="main">
-      <div class="main-block">
+      <!-- <div class="main-block">
         <div class="title">
           <div class="label">最新发布</div>
           <div class="right">
@@ -133,7 +140,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="main-block">
         <div class="title">
           <div class="label">通知公告</div>
@@ -204,6 +211,13 @@
             </ul>
           </div>
         </div>
+      </div>
+      <div class="main-block">
+        <el-carousel :interval="4000" type="card" height="200px">
+          <el-carousel-item v-for="item in 6" :key="item">
+            <img src="../assets/home.jpg" height="400px">
+          </el-carousel-item>
+        </el-carousel>
       </div>
       <div class="main-block">
         <el-card class="box-card">
@@ -385,11 +399,11 @@
     <div class="footer">
       <div class="images">
         <div class="head">
+          <!-- <img src="../assets/code.jpg">
           <img src="../assets/code.jpg">
           <img src="../assets/code.jpg">
           <img src="../assets/code.jpg">
-          <img src="../assets/code.jpg">
-          <img src="../assets/code.jpg">
+          <img src="../assets/code.jpg"> -->
           <div class="links">
             <div class="link"><a href="www.baidu.com">湖南中医药大学主站</a></div>
             <div class="link"><a href="//www.baidu.com">大学生预征网</a></div>
@@ -404,8 +418,8 @@
           </div>
         </div>
         <div class="code">
-          <img src="../assets/code.jpg" style="height:150px;width:150px;">
-          <div class="code-name">湖南中医药大学安全卫士</div>
+          <img src="../assets/code.jpg" style="height:100px;width:100px;">
+          <!-- <div class="code-name">湖南中医药大学安全卫士</div> -->
         </div>
       </div>
     </div>
@@ -427,8 +441,8 @@ export default {
 <style scoped>
 .header {
   width: 100%;
-  height: 150px;
-  background: url(../assets/header.png) repeat-x;
+  height: 200px;
+  background: url(../assets/header-blue.png) repeat-x;
   z-index: 99;
 }
 .logo {
@@ -455,14 +469,14 @@ ul {
   float: left;
   margin-left: 13%;
   height: 40px;
-  margin-top: 5px;
+  margin-top: 50px;
 }
 .menu .other {
   float: right;
   text-align: center;
   line-height: 40px;
   display: block;
-  margin-top: 10px;
+  margin-top: 55px;
   height: 40px;
   font-size: 16px;
   color: #fff;
@@ -564,7 +578,7 @@ ul {
   clear: both;
   position: relative;
   z-index: 90;
-  height: 350px;
+  height: 400px;
   overflow: hidden
 }
 .banner img {
@@ -659,9 +673,8 @@ ul {
 }
 .footer {
   width: 100%;
-  height: 250px;
   overflow: hidden;
-  background: url(../assets/header.png) repeat-x;
+  background: url(../assets/header-blue.png) repeat-x;
   background-size:10px 400px;
   z-index: 99;
 }
@@ -686,7 +699,7 @@ ul {
   width: 20%;
   float: right;
   padding-right: 1%;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 .code-name {
   color: #fff;

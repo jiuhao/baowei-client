@@ -140,7 +140,7 @@ export default {
 .header {
   width: 100%;
   height: 150px;
-  background: url(../assets/header.png) repeat-x;
+  background: url(../assets/header-blue.png) repeat-x;
   z-index: 99;
 }
 .logo {
@@ -292,7 +292,7 @@ ul {
   width: 100%;
   height: 250px;
   overflow: hidden;
-  background: url(../assets/header.png) repeat-x;
+  background: url(../assets/header-blue.png) repeat-x;
   background-size:10px 400px;
   z-index: 99;
 }
