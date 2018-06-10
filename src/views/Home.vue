@@ -3,7 +3,7 @@
     <div class="header">
       <div class="logo">
         <a>
-          <img src="../assets/logo.png">
+          <img src="../assets/logo.png" style="width:700px;height:150px">
         </a>
       </div>
       <div class="menu">
@@ -159,53 +159,22 @@
         <div class="body">
           <div class="content" style="padding-left:0px;width:50%">
             <ul>
-              <li>
+              <li v-for="item in this.listLeft" v-bind:key="item">
                 <img src="../assets/arrow.jpg">
-                <div class="content-title">
-                  湖南中医药大学2017年消防安全培训议程
+                <div class="content-title" v-text="item.title">
                 </div>
-                <div class="content-time">
-                  2017-06-15
+                <div class="content-time" v-text="item.update_time">
                 </div>
               </li>
             </ul>
           </div>
           <div class="content">
             <ul>
-              <li>
+              <li v-for="item in this.listRight" v-bind:key="item">
                 <img src="../assets/arrow.jpg">
-                <div class="content-title">
-                  湖南中医药大学2017年消防安全培训议程
+                <div class="content-title" v-text="item.title">
                 </div>
-                <div class="content-time">
-                  2017-06-15
-                </div>
-              </li>
-              <li>
-                <img src="../assets/arrow.jpg">
-                <div class="content-title">
-                  湖南中医药大学2017年消防安全培训议程
-                </div>
-                <div class="content-time">
-                  2017-06-15
-                </div>
-              </li>
-              <li>
-                <img src="../assets/arrow.jpg">
-                <div class="content-title">
-                  湖南中医药大学2017年消防安全培训议程
-                </div>
-                <div class="content-time">
-                  2017-06-15
-                </div>
-              </li>
-              <li>
-                <img src="../assets/arrow.jpg">
-                <div class="content-title">
-                  湖南中医药大学2017年消防安全培训议程
-                </div>
-                <div class="content-time">
-                  2017-06-15
+                <div class="content-time" v-text="item.update_time">
                 </div>
               </li>
             </ul>
@@ -423,17 +392,58 @@
         </div>
       </div>
     </div>
+    <div class="fixed-menu">
+      <ul class="fx-ul">
+          <li class="fx-shop">
+              <a class="iconfont" href="#" target="_blank">
+                <img src="../assets/message.png" style="height: 30px;width:30px;">
+              </a>
+              <div class="title">留言</div>
+          </li>
+          <li class="fx-top">.
+              <a class="iconfont" href="#">
+                <img src="../assets/top.png" style="height: 30px;width:30px">
+              </a>
+              <div class="title">回到顶部</div>
+          </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
+import { getHome } from '@/api/home'
+
 export default {
   name: 'Home',
   data () {
     return {
       index: 0,
       activeIndex: '1',
-      activeIndex2: '1'
+      activeIndex2: '1',
+      listLeft: [],
+      listRight: []
+    }
+  },
+  created () {
+    this.getHome()
+  },
+  methods: {
+    getHome () {
+      this.listLoading = true
+      getHome(this.listQuery).then(response => {
+        this.listLeft = []
+        this.listRight = []
+        let length = response.data.length
+        for (let i = 0; i < length; i++) {
+          if (i < 10) {
+            this.listLeft.push(response.data[i])
+          } else {
+            this.listRight.push(response.data[i])
+          }
+        }
+        this.listLoading = false
+      })
     }
   }
 }
@@ -753,6 +763,100 @@ ul {
   text-decoration:none;  /*鼠标放上去有下划线*/
 }
 .box-card ul a:hover{
- text-decoration:underline;  /*鼠标放上去有下划线*/
+  text-decoration:underline;  /*鼠标放上去有下划线*/
+}
+* {
+    margin:0;
+    padding:0;
+}
+ul {
+  list-style:none;
+}
+.fixed-menu {
+    position:fixed;
+    right:0px;
+    top:50%;
+    margin-top: 18%;
+    width:60px;
+    /* box-shadow:0px 0px 20px rgba(0,0,0,.3); */
+    z-index:999;
+}
+.fx-ul li {
+    position:relative;
+    height:50px;
+    line-height:50px;
+    background-color: #ccc;
+    border-bottom:1px solid #fff;
+}
+.fx-ul li a {
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:2;
+    color:#fff;
+    display:block;
+    width:60px;
+    height:60px;
+    line-height:60px;
+    text-align:center;
+    -webkit-transition:all 0.6s;
+    -ms-transition:all 0.6s;
+    -moz-transition:all 0.6s;
+    text-decoration:none;
+    font-size:24px;
+}
+.title {
+    position:absolute;
+    left:0px;
+    bottom:1px;
+    color:#fff;
+    width:80px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    -webkit-transition:all 0.6s;
+    -ms-transition:all 0.6s;
+    -moz-transition:all 0.6s;
+    background-color:#fff;
+    box-shadow:0px 0px 10px rgba(0,0,0,.3);
+    z-index:1;
+    opacity:0;
+}
+.title:before {
+    content:'';
+    display:block;
+    width:10px;
+    height:10px;
+    position:absolute;
+    right:-5px;
+    top:14px;
+    background-color:#fff;
+    transform:rotate(45deg);
+}
+.fx-ul li:hover .title {
+    left:-88px;
+    opacity:1;
+}
+.fx-ul li.fx-shop a {
+    background-image:-webkit-linear-gradient(left,#f60,#ffb443);
+    background-image:-moz-linear-gradient(left,#f60,#ffb443);
+    background-image:-ms-linear-gradient(left,#f60,#ffb443);
+}
+.fx-ul li.fx-shop .title {
+  background-color:#f60;
+}
+.fx-ul li.fx-shop .title:before {
+  background-color:#f60;
+}
+.fx-ul li.fx-top a {
+    background-image:-webkit-linear-gradient(left,#333,#666);
+    background-image:-moz-linear-gradient(left,#333,#666);
+    background-image:-ms-linear-gradient(left,#333,#666);
+}
+.fx-ul li.fx-top .title {
+  background-color:#333;
+}
+.fx-ul li.fx-top .title:before {
+  background-color:#333;
 }
 </style>

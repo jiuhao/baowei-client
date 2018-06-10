@@ -1,9 +1,11 @@
 import axios from 'axios'
-import { Message, MessageBox } from 'element-ui'
+import { Message } from 'element-ui'
+
+const BASE_API = 'http://localhost:7001/api'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: process.env.BASE_API, // api的base_url
+  baseURL: BASE_API, // api的base_url
   timeout: 15000 // 请求超时时间
 })
 
@@ -20,7 +22,7 @@ service.interceptors.response.use(
         type: 'error',
         duration: 2.5 * 1000
       })
-      return Promise.reject('error')
+      return Promise.reject(new Error('error'))
     } else {
       return response.data
     }

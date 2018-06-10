@@ -1,9 +1,8 @@
 import request from '@/utils/request'
 
-export function getList(data) {
+export function getHome (data) {
   return request({
-    url: '/admin/list',
-    method: 'post',
-    data: data
+    url: '/home/publish/get',
+    method: 'get'
   })
 }
