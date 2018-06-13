@@ -2,8 +2,8 @@
   <div>
     <div class="header">
       <div class="logo">
-        <a>
-          <img src="../assets/logo.png" style="width:700px;height:150px">
+        <a href="http://www.hnucm.edu.cn/" target="blanck">
+          <img src="../assets/logo.png" style="width:700px;height:150px;">
         </a>
       </div>
       <div class="menu">
@@ -183,8 +183,8 @@
       </div>
       <div class="main-block">
         <el-carousel :interval="4000" type="card" height="200px">
-          <el-carousel-item v-for="item in 6" :key="item">
-            <img src="../assets/home.jpg" height="400px">
+          <el-carousel-item v-for="item in blockBannerList" :key="item">
+            <img :src="item.subimg" height="400px">
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -192,28 +192,13 @@
         <el-card class="box-card">
           <div class="card-title">
             <img class="point" src="../assets/point.png">
-            <div class="name">安全知识</div>
+            <div class="name">政法工作</div>
             <img class="more" src="../assets/more.jpg">
           </div>
           <div>
             <ul>
-              <ol>
-                <a href="#">预防结核</a>
-              </ol>
-              <ol>
-                <a href="#">大学返校十大安全注意事项</a>
-              </ol>
-              <ol>
-                <a href="#">校园寝室防盗安全知识普及</a>
-              </ol>
-              <ol>
-                <a href="#">消防安全小知识</a>
-              </ol>
-              <ol>
-                <a href="#">艾滋病——世界之泣</a>
-              </ol>
-              <ol>
-                <a href="#">预防艾滋病</a>
+              <ol v-for="item in this.blockObj[1]" v-bind:key="item">
+                <a href="#" v-text="item.title"></a>
               </ol>
             </ul>
           </div>
@@ -221,28 +206,13 @@
         <el-card class="box-card" style="margin-left:4%;margin-right:5%">
           <div class="card-title">
             <img class="point" src="../assets/point.png">
-            <div class="name">失物招领</div>
+            <div class="name">安全知识</div>
             <img class="more" src="../assets/more.jpg">
           </div>
           <div>
             <ul>
-              <ol>
-                <a href="#">预防结核</a>
-              </ol>
-              <ol>
-                <a href="#">大学返校十大安全注意事项</a>
-              </ol>
-              <ol>
-                <a href="#">校园寝室防盗安全知识普及</a>
-              </ol>
-              <ol>
-                <a href="#">消防安全小知识</a>
-              </ol>
-              <ol>
-                <a href="#">艾滋病——世界之泣</a>
-              </ol>
-              <ol>
-                <a href="#">预防艾滋病</a>
+              <ol v-for="item in this.blockObj[2]" v-bind:key="item">
+                <a href="#" v-text="item.title"></a>
               </ol>
             </ul>
           </div>
@@ -255,23 +225,8 @@
           </div>
           <div>
             <ul>
-              <ol>
-                <a href="#">预防结核</a>
-              </ol>
-              <ol>
-                <a href="#">大学返校十大安全注意事项</a>
-              </ol>
-              <ol>
-                <a href="#">校园寝室防盗安全知识普及</a>
-              </ol>
-              <ol>
-                <a href="#">消防安全小知识</a>
-              </ol>
-              <ol>
-                <a href="#">艾滋病——世界之泣</a>
-              </ol>
-              <ol>
-                <a href="#">预防艾滋病</a>
+              <ol v-for="item in this.blockObj[3]" v-bind:key="item">
+                <a href="#" v-text="item.title"></a>
               </ol>
             </ul>
           </div>
@@ -279,28 +234,13 @@
         <el-card class="box-card">
           <div class="card-title">
             <img class="point" src="../assets/point.png">
-            <div class="name">政法工作</div>
+            <div class="name">东塘保卫科</div>
             <img class="more" src="../assets/more.jpg">
           </div>
           <div>
             <ul>
-              <ol>
-                <a href="#">预防结核</a>
-              </ol>
-              <ol>
-                <a href="#">大学返校十大安全注意事项</a>
-              </ol>
-              <ol>
-                <a href="#">校园寝室防盗安全知识普及</a>
-              </ol>
-              <ol>
-                <a href="#">消防安全小知识</a>
-              </ol>
-              <ol>
-                <a href="#">艾滋病——世界之泣</a>
-              </ol>
-              <ol>
-                <a href="#">预防艾滋病</a>
+              <ol v-for="item in this.blockObj[4]" v-bind:key="item">
+                <a href="#" v-text="item.title"></a>
               </ol>
             </ul>
           </div>
@@ -308,28 +248,13 @@
         <el-card class="box-card" style="margin-left:4%;margin-right:5%">
           <div class="card-title">
             <img class="point" src="../assets/point.png">
-            <div class="name">典型案例</div>
+            <div class="name">失物招领</div>
             <img class="more" src="../assets/more.jpg">
           </div>
           <div>
             <ul>
-              <ol>
-                <a href="#">典型案例</a>
-              </ol>
-              <ol>
-                <a href="#">大学返校十大安全注意事项</a>
-              </ol>
-              <ol>
-                <a href="#">校园寝室防盗安全知识普及</a>
-              </ol>
-              <ol>
-                <a href="#">消防安全小知识</a>
-              </ol>
-              <ol>
-                <a href="#">艾滋病——世界之泣</a>
-              </ol>
-              <ol>
-                <a href="#">预防艾滋病</a>
+              <ol v-for="item in this.blockObj[5]" v-bind:key="item">
+                <a href="#" v-text="item.title"></a>
               </ol>
             </ul>
           </div>
@@ -342,23 +267,8 @@
           </div>
           <div>
             <ul>
-              <ol>
-                <a href="#">预防结核</a>
-              </ol>
-              <ol>
-                <a href="#">大学返校十大安全注意事项</a>
-              </ol>
-              <ol>
-                <a href="#">校园寝室防盗安全知识普及</a>
-              </ol>
-              <ol>
-                <a href="#">消防安全小知识</a>
-              </ol>
-              <ol>
-                <a href="#">艾滋病——世界之泣</a>
-              </ol>
-              <ol>
-                <a href="#">预防艾滋病</a>
+              <ol v-for="item in fileBlock" v-bind:key="item">
+                <a :href="item.url" v-text="item.name"></a>
               </ol>
             </ul>
           </div>
@@ -374,10 +284,9 @@
           <img src="../assets/code.jpg">
           <img src="../assets/code.jpg"> -->
           <div class="links">
-            <div class="link"><a href="www.baidu.com">湖南中医药大学主站</a></div>
-            <div class="link"><a href="//www.baidu.com">大学生预征网</a></div>
-            <div class="link"><a href="www.baidu.com">湖南省征兵网</a></div>
-            <div class="link"><a href="www.baidu.com">百度</a></div>
+            <div class="link"><a href="http://www.hnucm.edu.cn/" target="blanck">湖南中医药大学主站</a></div>
+            <div class="link"><a href="https://www.gfbzb.gov.cn/" target="blanck">大学生预征网</a></div>
+            <div class="link"><a href="https://www.gfbzb.gov.cn/ssts/query.action?ssdm=430000&item=GZDT" target="blanck">湖南省征兵网</a></div>
           </div>
             <div class="instruc">
             <div>版权所有：湖南中医药大学 保卫处 武装部</div>
@@ -412,7 +321,7 @@
 </template>
 
 <script>
-import { getHome } from '@/api/home'
+import { getHome, getBlock, getFileBlock, listBlockBanner } from '@/api/home'
 
 export default {
   name: 'Home',
@@ -422,16 +331,29 @@ export default {
       activeIndex: '1',
       activeIndex2: '1',
       listLeft: [],
-      listRight: []
+      listRight: [],
+      blockObj: {
+        1: [],
+        2: [],
+        3: [],
+        4: [],
+        5: [],
+        6: []
+      },
+      fileBlock: [],
+      blockBannerList: []
     }
   },
   created () {
     this.getHome()
+    this.getBlock()
+    this.getFileBlock()
+    this.listBlockBanner()
   },
   methods: {
     getHome () {
       this.listLoading = true
-      getHome(this.listQuery).then(response => {
+      getHome().then(response => {
         this.listLeft = []
         this.listRight = []
         let length = response.data.length
@@ -442,6 +364,27 @@ export default {
             this.listRight.push(response.data[i])
           }
         }
+        this.listLoading = false
+      })
+    },
+    getBlock () {
+      this.listLoading = true
+      getBlock().then(response => {
+        this.blockObj = response.data
+        this.listLoading = false
+      })
+    },
+    getFileBlock () {
+      this.listLoading = true
+      getFileBlock().then(response => {
+        this.fileBlock = response.data
+        this.listLoading = false
+      })
+    },
+    listBlockBanner () {
+      this.listLoading = true
+      listBlockBanner().then(response => {
+        this.blockBannerList = response.data
         this.listLoading = false
       })
     }
