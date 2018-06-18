@@ -2,8 +2,11 @@
   <div>
     <div class="header">
       <div class="logo">
-        <a>
-          <img src="../assets/logo.png">
+        <a href="#/">
+          <img src="../assets/logo.png" style="width:700px;height:150px;">
+        </a>
+        <a href="http://www.hnucm.edu.cn/" target="blanck" style="position:absolute;top:100px;right:100px;color:#fff;font-size:16px">
+        湖南中医药大学主站
         </a>
       </div>
       <div class="menu">
@@ -91,22 +94,27 @@
             </li>
           </ul>
         </div>
+        <div class="item5">
+          <ul v-show="index == 5" @mouseover="index = 5" @mouseout="index = 0">
+            <li>
+              <a href="#">学生军训</a>
+            </li>
+            <li>
+              <a href="#">大学生征兵</a>
+            </li>
+          </ul>
+        </div>
     </div>
     <div class="main">
+      <div class="article-content" v-html="article.content"></div>
     </div>
     <div class="footer">
       <div class="images">
         <div class="head">
-          <img src="../assets/code.jpg">
-          <img src="../assets/code.jpg">
-          <img src="../assets/code.jpg">
-          <img src="../assets/code.jpg">
-          <img src="../assets/code.jpg">
           <div class="links">
-            <div class="link"><a href="www.baidu.com">湖南中医药大学主站</a></div>
-            <div class="link"><a href="//www.baidu.com">大学生预征网</a></div>
-            <div class="link"><a href="www.baidu.com">湖南省征兵网</a></div>
-            <div class="link"><a href="www.baidu.com">百度</a></div>
+            <div class="link"><a href="http://www.hnucm.edu.cn/" target="blanck">湖南中医药大学主站</a></div>
+            <div class="link"><a href="https://www.gfbzb.gov.cn/" target="blanck">大学生预征网</a></div>
+            <div class="link"><a href="https://www.gfbzb.gov.cn/ssts/query.action?ssdm=430000&item=GZDT" target="blanck">湖南省征兵网</a></div>
           </div>
             <div class="instruc">
             <div>版权所有：湖南中医药大学 保卫处 武装部</div>
@@ -116,22 +124,80 @@
           </div>
         </div>
         <div class="code">
-          <img src="../assets/code.jpg" style="height:150px;width:150px;">
-          <div class="code-name">湖南中医药大学安全卫士</div>
+          <img src="../assets/code.jpg" style="height:100px;width:100px;">
+          <!-- <div class="code-name">湖南中医药大学安全卫士</div> -->
         </div>
       </div>
     </div>
+    <div class="fixed-menu">
+      <ul class="fx-ul">
+          <li class="fx-shop">
+              <a class="iconfont" @click="dialogVisible = true">
+                <img src="../assets/message.png" style="height: 25px;width:25px;">
+              </a>
+              <div class="title">留言</div>
+          </li>
+          <li class="fx-top">.
+              <a class="iconfont" href="#">
+                <img src="../assets/top.png" style="height: 25px;width:25px">
+              </a>
+              <div class="title">回到顶部</div>
+          </li>
+      </ul>
+    </div>
+    <el-dialog
+      title="提示"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :before-close="handleClose">
+      <el-form ref="form" :model="form" label-width="80px">
+        <el-input type="textarea" v-model="form.message"></el-input>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="submitMessage">提 交</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import { loadArticle, submitMessage } from '@/api/home'
+import { UrlSearch } from '@/utils/tool'
+
 export default {
-  name: 'Home',
+  name: 'Article',
   data () {
     return {
       index: 0,
       activeIndex: '1',
-      activeIndex2: '1'
+      activeIndex2: '1',
+      dialogVisible: false,
+      article: '',
+      form: {
+        message: '填写留言'
+      }
+    }
+  },
+  created () {
+    this.loadArticle()
+  },
+  methods: {
+    loadArticle () {
+      this.listLoading = true
+      let param = new UrlSearch()
+      loadArticle(param).then(response => {
+        this.article = response.data
+        this.listLoading = false
+      })
+    },
+    submitMessage () {
+      this.dialogVisible = false
+      submitMessage({
+        content: this.form.message
+      }).then(response => {
+
+      })
     }
   }
 }
@@ -139,7 +205,7 @@ export default {
 <style scoped>
 .header {
   width: 100%;
-  height: 150px;
+  height: 200px;
   background: url(../assets/header-blue.png) repeat-x;
   z-index: 99;
 }
@@ -167,14 +233,14 @@ ul {
   float: left;
   margin-left: 13%;
   height: 40px;
-  margin-top: 5px;
+  margin-top: 50px;
 }
 .menu .other {
   float: right;
   text-align: center;
   line-height: 40px;
   display: block;
-  margin-top: 10px;
+  margin-top: 55px;
   height: 40px;
   font-size: 16px;
   color: #fff;
@@ -188,8 +254,8 @@ ul {
 .items a {
   width: 85px;
   text-align: center;
-  height: 45px;
-  line-height: 45px;
+  height: 50px;
+  line-height: 50px;
   display: block;
   color: #fff;
   padding: 0 20px;
@@ -228,6 +294,9 @@ ul {
 .item4 li {
   padding: 4px 0px;
 }
+.item5 li {
+  padding: 4px 0px;
+}
 .item1 a:hover {
   padding-left: 30px;
   text-decoration:none;
@@ -237,6 +306,10 @@ ul {
   text-decoration:none;
 }
 .item4 a:hover {
+  padding-left: 30px;
+  text-decoration:none;
+}
+.item5 a:hover {
   padding-left: 30px;
   text-decoration:none;
 }
@@ -272,25 +345,83 @@ ul {
   color: #fff;
   text-decoration:none;
 }
-.banner {
-  clear: both;
-  position: relative;
-  z-index: 90;
+.item5 {
+  position: absolute;
+  float: left;
+  width: 125px;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  color: #fff;
+  font-size: 16px;
+  margin-left: 47.9%;
 }
-.banner img {
-  width: 100%;
-  height: 600px;
-  margin-top: -180px;
+.item5 a {
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #fff;
+  text-decoration:none;
 }
+
 .main {
   clear: both;
   margin: 0 auto;
   width: 83%;
+  min-height: 800px;
   padding-bottom: 40px;
+}
+.body {
+  clear: both;
+}
+.body .left{
+  width: 50%;
+  float: left;
+}
+.body .content{
+  width: 47%;
+  float: left;
+  padding-left: 3%;
+  font-size: 16px;
+}
+.content li {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+}
+.content img {
+  float: left;
+  padding-right: 10px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.content .content-title {
+  float: left
+}
+.content .content-time {
+  float: right;
+}
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 400px;
+  margin: 0;
+}
+.el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+}
+.el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
+}
+.box-card {
+  float: left;
+  width: 30%;
+  height: 210px;
+  margin-bottom: 50px;
 }
 .footer {
   width: 100%;
-  height: 250px;
   overflow: hidden;
   background: url(../assets/header-blue.png) repeat-x;
   background-size:10px 400px;
@@ -317,7 +448,7 @@ ul {
   width: 20%;
   float: right;
   padding-right: 1%;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 .code-name {
   color: #fff;
@@ -371,6 +502,102 @@ ul {
   text-decoration:none;  /*鼠标放上去有下划线*/
 }
 .box-card ul a:hover{
- text-decoration:underline;  /*鼠标放上去有下划线*/
+  text-decoration:underline;  /*鼠标放上去有下划线*/
+}
+* {
+    margin:0;
+    padding:0;
+}
+ul {
+  list-style:none;
+}
+.fixed-menu {
+    position:fixed;
+    right:0px;
+    top:50%;
+    margin-top: 17%;
+    width:60px;
+    z-index:999;
+}
+.fx-ul li {
+    position:relative;
+    height:50px;
+    line-height:50px;
+    background-color: #ccc;
+    border-bottom:1px solid #fff;
+}
+.fx-ul li a {
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:2;
+    color:#fff;
+    display:block;
+    width:60px;
+    height:60px;
+    line-height:60px;
+    text-align:center;
+    -webkit-transition:all 0.6s;
+    -ms-transition:all 0.6s;
+    -moz-transition:all 0.6s;
+    text-decoration:none;
+    font-size:24px;
+}
+.title {
+    position:absolute;
+    left:0px;
+    bottom:1px;
+    color:#fff;
+    width:80px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    -webkit-transition:all 0.6s;
+    -ms-transition:all 0.6s;
+    -moz-transition:all 0.6s;
+    background-color:#fff;
+    box-shadow:0px 0px 10px rgba(0,0,0,.3);
+    z-index:1;
+    opacity:0;
+}
+.title:before {
+    content:'';
+    display:block;
+    width:10px;
+    height:10px;
+    position:absolute;
+    right:-5px;
+    top:14px;
+    background-color:#fff;
+    transform:rotate(45deg);
+}
+.fx-ul li:hover .title {
+    left:-88px;
+    opacity:1;
+}
+.fx-ul li.fx-shop a {
+    background-image:-webkit-linear-gradient(left,#f60,#ffb443);
+    background-image:-moz-linear-gradient(left,#f60,#ffb443);
+    background-image:-ms-linear-gradient(left,#f60,#ffb443);
+}
+.fx-ul li.fx-shop .title {
+  background-color:#f60;
+}
+.fx-ul li.fx-shop .title:before {
+  background-color:#f60;
+}
+.fx-ul li.fx-top a {
+    background-image:-webkit-linear-gradient(left,#333,#666);
+    background-image:-moz-linear-gradient(left,#333,#666);
+    background-image:-ms-linear-gradient(left,#333,#666);
+}
+.fx-ul li.fx-top .title {
+  background-color:#333;
+}
+.fx-ul li.fx-top .title:before {
+  background-color:#333;
+}
+.iconfont {
+  cursor: pointer;
 }
 </style>

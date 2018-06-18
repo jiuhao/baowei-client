@@ -104,214 +104,31 @@
             </li>
           </ul>
         </div>
-      <!-- <img src="../assets/home.jpg"> -->
-      <div class="block">
-        <el-carousel height="400px">
-          <el-carousel-item v-for="item in 4" :key="item">
-            <img src="../assets/home.jpg">
-          </el-carousel-item>
-        </el-carousel>
-      </div>
     </div>
     <div class="main">
-      <!-- <div class="main-block">
-        <div class="title">
-          <div class="label">最新发布</div>
-          <div class="right">
-            <img src="../assets/dots.jpg">
-          </div>
-        </div>
-        <div class="subtitle">
-          <div class="label">保卫处最新工作动态</div>
-          <div class="right">
-            <a href="#">
-              <img src="../assets/more.jpg" style="height: 15px;width: 40px;">
-            </a>
-          </div>
-        </div>
-        <div class="body">
-          <div class="left">
-            <div class="block">
-              <el-carousel height="300px">
-                <el-carousel-item v-for="item in 4" :key="item">
-                  <img src="../assets/home.jpg" style="height: 300px">
-                </el-carousel-item>
-              </el-carousel>
-            </div>
-          </div>
-          <div class="content">
-            <ul>
-              <li>
-                <img src="../assets/arrow.jpg">
-                <div class="content-title">
-                  湖南中医药大学2017年消防安全培训议程
+      <ul style="padding:20px 0px">
+          <li class="list-item" v-for="item in articleList" v-bind:key="item" style="clear:both;padding:10px 0px">
+              <a :href="'#/article?id=' + item.id">
+                <img :src="item.subimg" style="height:50px;width:50px;float:left">
+                <div style="float:left">
+                    <div v-text="item.title" style="color:#000"></div>
+                    <div v-text="item.subtitle" style="color:#000"></div>
                 </div>
-                <div class="content-time">
-                  2017-06-15
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> -->
-      <div class="main-block">
-        <div class="title">
-          <div class="label">通知公告</div>
-          <div class="right">
-            <img src="../assets/dots.jpg">
-          </div>
-        </div>
-        <div class="subtitle">
-          <div class="label">保卫处最新通知</div>
-          <div class="right">
-            <a href="#/article/list">
-              <img src="../assets/more.jpg" style="height: 15px;width: 40px;">
-            </a>
-          </div>
-        </div>
-        <div class="body">
-          <div class="content" style="padding-left:0px;width:50%">
-            <ul>
-                <li v-for="item in this.listLeft" v-bind:key="item">
-                  <a :href="'#/article?id=' + item.id">
-                    <img src="../assets/arrow.jpg">
-                      <div class="content-title" v-text="item.title">
-                      </div>
-                      <div class="content-time" v-text="item.update_time">
-                    </div>
-                  </a>
-              </li>
-            </ul>
-          </div>
-          <div class="content">
-            <ul>
-              <li v-for="item in this.listRight" v-bind:key="item">
-                <img src="../assets/arrow.jpg">
-                <div class="content-title" v-text="item.title">
-                </div>
-                <div class="content-time" v-text="item.update_time">
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="main-block">
-        <el-carousel :interval="4000" type="card" height="200px">
-          <el-carousel-item v-for="item in blockBannerList" :key="item">
-            <a :href="'#/article?id=' + item.id">
-              <img :src="item.subimg" height="400px">
-            </a>
-          </el-carousel-item>
-        </el-carousel>
-      </div>
-      <div class="main-block">
-        <el-card class="box-card">
-          <div class="card-title">
-            <img class="point" src="../assets/point.png">
-            <div class="name">政法工作</div>
-            <a href="#/article/list?type=1">
-              <img class="more" src="../assets/more.jpg">
-            </a>
-          </div>
-          <div>
-            <ul>
-              <ol v-for="item in this.blockObj[1]" v-bind:key="item">
-                <a :href="'#/article?id=' + item.id" v-text="item.title"></a>
-              </ol>
-            </ul>
-          </div>
-        </el-card>
-        <el-card class="box-card" style="margin-left:4%;margin-right:5%">
-          <div class="card-title">
-            <img class="point" src="../assets/point.png">
-            <div class="name">安全知识</div>
-            <a href="#/article/list?type=2">
-              <img class="more" src="../assets/more.jpg">
-            </a>
-          </div>
-          <div>
-            <ul>
-              <ol v-for="item in this.blockObj[2]" v-bind:key="item">
-                <a :href="'#/article?id=' + item.id" v-text="item.title"></a>
-              </ol>
-            </ul>
-          </div>
-        </el-card>
-        <el-card class="box-card">
-          <div class="card-title">
-            <img class="point" src="../assets/point.png">
-            <div class="name">武装部工作</div>
-            <a href="#/article/list?type=3">
-              <img class="more" src="../assets/more.jpg">
-            </a>
-          </div>
-          <div>
-            <ul>
-              <ol v-for="item in this.blockObj[3]" v-bind:key="item">
-                <a :href="'#/article?id=' + item.id" v-text="item.title"></a>
-              </ol>
-            </ul>
-          </div>
-        </el-card>
-        <el-card class="box-card">
-          <div class="card-title">
-            <img class="point" src="../assets/point.png">
-            <div class="name">东塘保卫科</div>
-            <a href="#/article/list?type=4">
-              <img class="more" src="../assets/more.jpg">
-            </a>
-          </div>
-          <div>
-            <ul>
-              <ol v-for="item in this.blockObj[4]" v-bind:key="item">
-                <a :href="'#/article?id=' + item.id" v-text="item.title"></a>
-              </ol>
-            </ul>
-          </div>
-        </el-card>
-        <el-card class="box-card" style="margin-left:4%;margin-right:5%">
-          <div class="card-title">
-            <img class="point" src="../assets/point.png">
-            <div class="name">失物招领</div>
-            <a href="#/article/list?type=5">
-              <img class="more" src="../assets/more.jpg">
-            </a>
-          </div>
-          <div>
-            <ul>
-              <ol v-for="item in this.blockObj[5]" v-bind:key="item">
-                <a :href="'#/article?id=' + item.id" v-text="item.title"></a>
-              </ol>
-            </ul>
-          </div>
-        </el-card>
-        <el-card class="box-card">
-          <div class="card-title">
-            <img class="point" src="../assets/point.png">
-            <div class="name">下载专区</div>
-            <a href="#/file/list">
-              <img class="more" src="../assets/more.jpg">
-            </a>
-          </div>
-          <div>
-            <ul>
-              <ol v-for="item in fileBlock" v-bind:key="item">
-                <a :href="item.url" v-text="item.name"></a>
-              </ol>
-            </ul>
-          </div>
-        </el-card>
+                <div v-text="item.update_time" style="float:right;color:#000"></div>
+              </a>
+          </li>
+      </ul>
+      <div v-show="!listLoading" class="pagination-container" align="center">
+        <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                        :current-page.sync="page"
+                        :page-sizes="[10, 20, 30, 50]" :page-size="size"
+                        layout="total, sizes, prev, pager, next, jumper" :total="total">
+        </el-pagination>
       </div>
     </div>
     <div class="footer">
       <div class="images">
         <div class="head">
-          <!-- <img src="../assets/code.jpg">
-          <img src="../assets/code.jpg">
-          <img src="../assets/code.jpg">
-          <img src="../assets/code.jpg">
-          <img src="../assets/code.jpg"> -->
           <div class="links">
             <div class="link"><a href="http://www.hnucm.edu.cn/" target="blanck">湖南中医药大学主站</a></div>
             <div class="link"><a href="https://www.gfbzb.gov.cn/" target="blanck">大学生预征网</a></div>
@@ -363,76 +180,48 @@
 </template>
 
 <script>
-import { getHome, getBlock, getFileBlock, listBlockBanner, submitMessage } from '@/api/home'
+import { listArticle, submitMessage } from '@/api/home'
+import { UrlSearch } from '@/utils/tool'
 
 export default {
-  name: 'Home',
+  name: 'Article',
   data () {
     return {
       index: 0,
       activeIndex: '1',
       activeIndex2: '1',
-      listLeft: [],
-      listRight: [],
-      blockObj: {
-        1: [],
-        2: [],
-        3: [],
-        4: [],
-        5: [],
-        6: []
-      },
-      fileBlock: [],
-      blockBannerList: [],
       dialogVisible: false,
+      articleList: [],
+      page: 1,
+      size: 20,
+      total: 0,
       form: {
         message: '填写留言'
       }
     }
   },
   created () {
-    this.getHome()
-    this.getBlock()
-    this.getFileBlock()
-    this.listBlockBanner()
+    this.listArticle()
   },
   methods: {
-    getHome () {
+    listArticle () {
       this.listLoading = true
-      getHome().then(response => {
-        this.listLeft = []
-        this.listRight = []
-        let length = response.data.length
-        for (let i = 0; i < length; i++) {
-          if (i < 10) {
-            this.listLeft.push(response.data[i])
-          } else {
-            this.listRight.push(response.data[i])
-          }
-        }
+      let param = new UrlSearch()
+      param.page = this.page
+      param.size = this.size
+      listArticle(param).then(response => {
+        this.articleList = response.data.list
+        this.total = response.data.total
         this.listLoading = false
       })
     },
-    getBlock () {
-      this.listLoading = true
-      getBlock().then(response => {
-        this.blockObj = response.data
-        this.listLoading = false
-      })
+    handleSizeChange (val) {
+      this.size = val
+      this.listArticle()
     },
-    getFileBlock () {
-      this.listLoading = true
-      getFileBlock().then(response => {
-        this.fileBlock = response.data
-        this.listLoading = false
-      })
-    },
-    listBlockBanner () {
-      this.listLoading = true
-      listBlockBanner().then(response => {
-        this.blockBannerList = response.data
-        this.listLoading = false
-      })
+    handleCurrentChange (val) {
+      this.page = val
+      this.listArticle()
     },
     submitMessage () {
       this.dialogVisible = false
@@ -604,51 +393,13 @@ ul {
   color: #fff;
   text-decoration:none;
 }
-.banner {
-  clear: both;
-  position: relative;
-  z-index: 90;
-  height: 400px;
-  overflow: hidden
-}
-.banner img {
-  width: 100%;
-  height: 600px;
-  margin-top: -180px;
-}
+
 .main {
   clear: both;
   margin: 0 auto;
   width: 83%;
+  min-height: 800px;
   padding-bottom: 40px;
-}
-.main-block {
-  padding-top: 40px;
-  max-height: 500px;
-  overflow: hidden;
-}
-.main-block .title {
-  clear: both;
-  line-height: 40px;
-}
-.main-block .subtitle {
-  clear: both;
-  line-height: 40px;
-}
-.main-block .title .label {
-  font-size: 34px;
-  float: left;
-}
-.main-block .title .right {
-  float: right;
-}
-.main-block .subtitle .right {
-  float: right;
-}
-.main-block .subtitle .label {
-  color: #989393;
-  font-size: 22px;
-  float: left;
 }
 .body {
   clear: both;
@@ -880,8 +631,5 @@ ul {
 }
 .iconfont {
   cursor: pointer;
-}
-.main-block .content a {
-  color: #000;
 }
 </style>
