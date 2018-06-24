@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 
-const BASE_API = 'http://localhost:7001/api'
+const BASE_API = 'http://118.31.13.217:7001/api'
 
 // 创建axios实例
 const service = axios.create({
